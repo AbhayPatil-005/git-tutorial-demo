@@ -61,3 +61,32 @@ for (let i = 0; i < fruit.length; i++){
     fruit[i].style.backgroundColor = 'brown';
     fruit[i].style.color = 'white';
 }
+
+//creating  elements and Dom relations
+// Write your code below:
+// create element
+const para = document.createElement('p');
+// create texttnode
+const paraText = document.createTextNode('Total fruits: 4');
+// append child
+para.appendChild(paraText);
+const divs = document.getElementsByTagName('div');
+const secondDiv = divs[1];
+secondDiv.appendChild(para);
+// insert before 
+const ul = document.querySelector('ul');
+secondDiv.insertBefore(para,ul);
+const basketHeading = document.getElementById('basket-heading');
+secondDiv.insertBefore(para,basketHeading);
+// set attribute,className, id
+para.className = 'fruitCount';
+para.id = 'fruitsTotal';
+para.setAttribute('title', 'fruitsTotal')
+
+const subHeading = document.createElement('h3');
+const subHeadingText = document.createTextNode('Buy high quality organic fruits online');
+subHeading.appendChild(subHeadingText);
+const firstDiv = divs[0];
+firstDiv.appendChild(subHeading)
+subHeading.style.fontStyle = 'italic';
+para.id = 'fruits-total';
