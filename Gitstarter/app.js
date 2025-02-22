@@ -90,3 +90,49 @@ const firstDiv = divs[0];
 firstDiv.appendChild(subHeading)
 subHeading.style.fontStyle = 'italic';
 para.id = 'fruits-total';
+
+//add and delete fruit
+const li = document.getElementsByTagName('li');
+
+for (let i = 0; i < li.length; i++) {
+    const Editbtn = document.createElement('button');
+    const editbtntxt = document.createTextNode('Edit');
+    Editbtn.appendChild(editbtntxt);
+    Editbtn.className = 'edit-btn';
+    li[i].appendChild(Editbtn);
+}
+
+// Implement the code as in video but with one extra ‘Edit’ button in ‘li’
+
+const Form = document.querySelector('form');
+const fruits = document.querySelector('.fruits');
+Form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    const fruittoadd = document.getElementById('fruit-to-add');
+    const newli = document.createElement('li');
+    const newlitxt = document.createTextNode(fruittoadd.value);
+    newli.appendChild(newlitxt);
+    newli.className = 'fruit';
+    
+    const dltbtn = document.createElement('button');
+    const dltbtntxt = document.createTextNode('x');
+    dltbtn.appendChild(dltbtntxt);
+    dltbtn.className = 'delete-btn';
+    newli.appendChild(dltbtn);
+
+    const edtbtn = document.createElement('button');
+    const edtbtntxt = document.createTextNode('Edit');
+    edtbtn.appendChild(edtbtntxt);
+    edtbtn.className = 'edit-btn';
+    newli.appendChild(edtbtn);
+    fruits.appendChild(newli);
+})
+
+fruits.addEventListener('click', function (event) {
+    if (event.target.classList.contains('delete-btn')) {
+        const FruitToDelete = event.target.parentElement;
+        fruits.removeChild(FruitToDelete);
+    };
+})
+// Implement the code as in video but with one extra 'Edit' button in 'li'
+
