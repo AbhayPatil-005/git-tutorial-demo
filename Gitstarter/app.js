@@ -136,3 +136,76 @@ fruits.addEventListener('click', function (event) {
 })
 // Implement the code as in video but with one extra 'Edit' button in 'li'
 
+// new task: add filter functionality
+const filter = document.getElementById('filter');
+
+filter.addEventListener('keyup', function (event) {
+    const textEntered = event.target.value.toLowerCase();
+    const fruitItems = document.getElementsByClassName("fruit");
+    const fruitDescription = document.getElementsByClassName('fruitsDescription');
+
+    for (let i = 0; i < fruitItems.length; i++) {
+        const currentFruitText = fruitItems[i].firstChild.textContent.toLowerCase();
+        const currentFruitDesText = fruitDescription[i].textContent.toLowerCase();
+        if ((currentFruitText.indexOf(textEntered) === -1) && (currentFruitDesText.indexOf(textEntered) === -1)) {
+            fruitItems[i].style.display = "none";
+        } else {
+            fruitItems[i].style.display = "flex";
+        }
+    }
+});
+
+const form = document.querySelector('form');
+const button = document.querySelector('button');
+const fruits = document.querySelector('.fruits');
+
+
+//creating input element for description
+const input = document.createElement('input');
+input.setAttribute('id', 'description');
+
+// insering input element before button
+form.insertBefore(input, button);
+
+// 
+form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    //getting the input fields : fruitname input field and description input field
+    const fruitValue = document.querySelector('#fruit-to-add');
+    const description1 = document.querySelector('#description');
+
+    //creating a list to add fruitname value and description 
+    const list = document.createElement('li');
+    list.setAttribute('class', 'fruit');
+    list.textContent = fruitValue.value;
+
+    //appending created a list to the fruits (ul)
+    fruits.appendChild(list);
+
+    // created delete button
+    const deleteBtn = document.createElement('button');
+    deleteBtn.textContent = 'x';
+    deleteBtn.setAttribute('class', 'delete-btn');
+    list.appendChild(deleteBtn);
+
+
+
+    // created paragraph to add description 
+    const para = document.createElement('p');
+    para.textContent = description1.value;
+    para.style.fontStyle = 'italic';
+    para.setAttribute('class', 'fruitsDescription');
+
+    //appendiong paragraph to the list
+    list.appendChild(para);
+})
+const grabFruits = document.querySelectorAll('li');
+const grabDeleteBtns = document.querySelectorAll('.delete-btn');
+for (let i = 0; i < grabFruits.length; i++) {
+    const para = document.createElement('p');
+    para.textContent = "King of fruits";
+    para.style.fontStyle = 'italic';
+    para.setAttribute('class', 'fruitsDescription');
+    grabFruits[i].insertBefore(para, grabDeleteBtns[i]);
+
+}
